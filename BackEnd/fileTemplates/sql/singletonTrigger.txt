@@ -1,0 +1,12 @@
+DELIMITER | 
+CREATE TRIGGER Singleton[NAME] 
+BEFORE INSERT ON [NAME]
+FOR EACH ROW 
+BEGIN
+IF (SELECT COUNT(*) FROM [NAME])>= 1 THEN 
+SIGNAL SQLSTATE 'HY107' 
+SET MESSAGE_TEXT = 'This entity is a singleton, you cannot insert another record'; 
+END IF; 
+END; 
+| 
+DELIMITER ; 

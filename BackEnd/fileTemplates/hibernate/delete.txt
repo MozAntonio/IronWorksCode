@@ -1,0 +1,11 @@
+public void delete([CLASSNAME] [INSTANCENAME]) {
+        Transaction tx = null;
+        try(Session session = factory.openSession()) {
+            tx = session.beginTransaction();
+            session.delete([INSTANCENAME]);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
+    }

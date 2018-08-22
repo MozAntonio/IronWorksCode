@@ -1,0 +1,63 @@
+<!--
+File: newproject.html
+Versione: 1.0
+Autore: Anna Poletti
+Registro Modifiche:
+Anna Poletti, creazione del file, 2018-06-11
+Stefano Nordio, stesura html, 2018-06-11
+Antonio Moz, versione ufficiale, 2018-06-12
+-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>New Project - IronWorks</title> <!-- from detail to general -->
+
+    <!-- meta -->
+    <meta name="description" content="Web application to create robustness diagrams and automatic generation of Java and SQL codes."/> <!-- max 150 char -->
+    <meta name="keywords" content="robustness diagrams,editor,java,sql,web application,new project,swearoncode"/> <!-- max 10 -->
+    <meta name="author" content="SwearOnCode"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="index, follow"/>
+
+    <!-- font -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../HomePage/images/favicon.ico"/>
+
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="./styles/newproject.css" media="all"/>
+    <!--<link rel="stylesheet" type="text/css" href="./styles/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="./styles/print.css" media="print"/>-->
+
+    <!-- script -->
+    <script type="text/javascript" src="../../../ExternalLibraries/scripts/jquery.js"></script>
+    <script type="text/javascript" src="../../../Controller/FirstPages/firstpages.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <!-- Titolo della pagina -->
+        <div id="title">
+            <h1>Create New Project</h1>
+        </div>
+        <div id="choice">
+            <p class="insertName">
+                <label class="name" for="projectName">Insert project's name:</label>
+                <input id="projectName" type="text" name="projectName"/>
+            </p>
+            <button class="newB" type="button" title="Create new project"
+                    onclick="createNewProject()"><img src="./images/checked.svg"
+                    class="imgButton"/>
+            </button>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+</body>
+
+</html>

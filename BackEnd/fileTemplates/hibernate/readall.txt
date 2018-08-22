@@ -1,0 +1,14 @@
+public ArrayList<[CLASSNAME]> readAll[CLASSNAME]() {
+        Transaction tx = null;
+        try (Session session = factory.openSession()) {
+            tx = session.beginTransaction();
+            List list = session.createQuery("FROM [CLASSNAME]").list();
+            ArrayList<[CLASSNAME]> p = new ArrayList<>();
+            list.stream().forEach(x -> p.add(([CLASSNAME])x));
+            return p;
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+            return null;
+        }
+    }

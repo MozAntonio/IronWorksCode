@@ -1,0 +1,16 @@
+public [CLASSNAME] read(int id) {
+        Transaction tx = null;
+        try (Session session = factory.openSession()) {
+            tx = session.beginTransaction();
+            List list = session.createQuery(String.format("FROM [CLASSNAME] WHERE db_id =%d", id)).list();
+            if(list.isEmpty()) return null;
+
+            [CLASSNAME] p = ([CLASSNAME])list.remove(0);
+            tx.commit();
+            return p;
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+            return null;
+        }
+    }

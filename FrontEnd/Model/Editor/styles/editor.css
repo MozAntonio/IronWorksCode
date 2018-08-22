@@ -1,0 +1,639 @@
+
+/*
+File: editor.css
+Versione: 4.0
+Autore: Antonio Moz
+Registro Modifiche:
+Anna Poletti, creazione file, 2018-06-10
+Stefano Nordio, stesura css menu e interfaccia dell'editor, 2018-06-15
+Stefano Nordio, stesura css menu a scomparsa , 2018-07-01
+Stefano Nordio, stesura css bottoni e campi input, 2018-07-02
+Antonio Moz, stesura css eventi relativi al mouse, 2018-07-05
+Antonio Moz, versione ufficiale, 2018-07-10
+*/
+
+/* Style generale riguardante i diversi tag HTML */
+* {
+    margin: 0;
+	border: 0;
+    font-family: Roboto, "Open Sans", Arial, Helevetica, sans-serif;
+	box-sizing: border-box;
+}
+
+*:invalid {
+    box-shadow: none;
+}
+
+body {
+	overflow-y: auto;
+	height: 95vh;
+}
+
+#container {
+	margin: 1%;
+}
+
+#title {
+    display: table;
+    width: 100%;
+    height: 13.5vh;
+    background-color: #173753;
+}
+
+h1 {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+    font-size: 64px;
+    line-height: 65px;
+	text-align: center;
+}
+
+ul {
+    margin: 0.5em;
+    padding: 0;
+    list-style: none;
+}
+
+/* Style del foglio contenente il diagramma */
+#diagrams {
+	position: relative;
+    display: table;
+    width: 100%;
+    height: 73vh;
+	min-height: 530px;
+	border-right: 2px solid #173753;
+	border-left: 2px solid #173753;
+}
+
+#menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: white;
+    float: left;
+    width: 0;
+	height: 100%;
+	border-right: 2px solid #173753;
+}
+
+#elements {
+    float: left;
+    width: 42%;
+	height: 100%;
+}
+
+#info {
+    float: left;
+    width: 58%;
+	height: 100%;
+}
+
+#editor {
+    float: left;
+    width: 100%;
+	height: 100%;
+}
+
+#footer {
+	display: flex;
+	align-items: center;
+    width: 100%;
+    height: 8.5vh;
+	min-height: 60px;
+    background-color: #173753;
+}
+
+#footer img:hover {
+    opacity: 0.7;
+}
+
+/* Style dei riquadri per l'inserimento di un elemento che prevede dati aggiuntivi */
+.divElement {
+	margin-top: 18px;
+    height: 110px;
+    clear: both;
+}
+
+.attrsElement {
+	height: 30px;
+}
+
+/* Style dell'inserimento del nome degli elementi */
+.group {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.group label {
+	color: #999999;
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
+}
+
+.bar {
+	position: relative;
+	display: block;
+	width: 150px;
+}
+
+.bar:before, .bar:after {
+	content: "";
+	height: 2px;
+	width: 0;
+	bottom: 2px;
+	position: absolute;
+	background: #5264AE;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 75px;
+}
+
+.bar:after {
+  right: 75px;
+}
+
+.highlight {
+	position: absolute;
+	height: 15px;
+	width: 100px;
+	top: 20px;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+input[type="text"] {
+	font-size: 18px;
+	padding: 10px 10px 5px 5px;
+	display: block;
+	width: 150px;
+	border: none;
+	border-bottom: 1px solid #757575;
+}
+
+input[type="text"]:focus {
+	outline: none;
+}
+
+input[type="text"]:focus ~ label, input[type="text"]:valid ~ label {
+	top: -8px;
+	font-size: 14px;
+	color: #5264AE;
+}
+
+input[type="text"]:focus ~ .bar:before, input[type="text"]:focus ~ .bar:after {
+	width: 75px;
+}
+
+input[type="text"]:focus ~ .highlight {
+	-webkit-animation: inputHighlighter 0.3s ease;
+	-moz-animation: inputHighlighter 0.3s ease;
+	animation: inputHighlighter 0.3s ease;
+}
+
+@-webkit-keyframes inputHighlighter {
+	from { background: #5264AE; }
+	to { width: 0; background: transparent; }
+}
+@-moz-keyframes inputHighlighter {
+	from { background: #5264AE; }
+	to { width: 0; background: transparent; }
+}
+@keyframes inputHighlighter {
+	from { background: #5264AE; }
+	to { width: 0; background: transparent; }
+}
+
+#boundaryName, #controlName {
+	margin-top: 15px;
+}
+
+#entityName {
+	margin-top: -25px;
+}
+
+/* Style della selezione del colore degli elementi */
+.full-spectrum .sp-palette {
+	max-width: 200px;
+}
+
+/* Style della selezione del tipo di accesso delle entità */
+.select {
+	position: relative;
+	width: 150px;
+	margin: 20% 0;
+}
+
+#menuSelect {
+	margin: 13% 0 5% 0;
+}
+
+.select-text {
+	position: relative;
+	padding: 0 10px 5px 5px;
+	background-color: transparent;
+	width: 150px;
+	font-size: 18px;
+	font-weight: normal;
+	border-radius: 0;
+	border: none;
+	border-bottom: 1px solid #757575;
+	-moz-appearance: none;
+}
+
+.select-text:focus {
+	outline: none;
+	border-bottom: 1px solid rgba(0,0,0,0);
+}
+
+.select .select-text {
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+.select:after {
+	position: absolute;
+	top: 18px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: "";
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid rgba(0, 0, 0, 0.12);
+	pointer-events: none;
+}
+
+.select-label {
+	color: #999999;
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 0;
+	transition: 0.2s ease all;
+	-moz-transition: 0.2s ease all;
+	-webkit-transition: 0.2s ease all;
+}
+
+.select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
+	color: #5264AE;
+	top: -18px;
+	transition: 0.2s ease all;
+	font-size: 14px;
+}
+
+.select-bar {
+	position: relative;
+	display: block;
+	width: 150px;
+}
+
+.select-bar:before, .select-bar:after {
+	content: "";
+	height: 2px;
+	width: 0;
+	bottom: 1px;
+	position: absolute;
+	background: #5264AE;
+	transition: 0.2s ease all;
+}
+
+.select-bar:before {
+	left: 50%;
+}
+
+.select-bar:after {
+	right: 50%;
+}
+
+.select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {
+	width: 50%;
+}
+
+.select-highlight {
+	position: absolute;
+	height: 60%;
+	width: 100px;
+	top: 25%;
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+/* Style della checkbox per la selezione della proprietà singleton */
+.material-checkbox {
+	display: inline-block;
+	cursor: pointer;
+	color: #999999;
+	font-size: 18px;
+	font-weight: normal;
+	line-height: 18px;
+	height: 15px;
+}
+
+#menu-checkbox {
+	position: absolute;
+	top: 479px;
+	left: 180px;
+}
+
+#attribute-checkbox {
+	position: absolute;
+	top: 225px;
+	left: 10px;
+}
+
+.material-checkbox > input {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	position: absolute;
+	z-index: -1;
+	left: -15px;
+	top: -15px;
+	display: block;
+	margin: 0;
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	background-color: rgba(0, 0, 0, 0.42);
+	outline: none;
+	opacity: 0;
+	transform: scale(1);
+	-ms-transform: scale(0);
+	transition: opacity 0.5s, transform 0.5s;
+}
+
+.material-checkbox > input:checked {
+	background-color: #2196F3;
+}
+
+.material-checkbox:active > input {
+	opacity: 1;
+	transform: scale(0);
+	transition: opacity 0s, transform 0s;
+}
+
+.material-checkbox > input:disabled {
+	opacity: 0;
+}
+
+.material-checkbox > input:disabled + span {
+	cursor: initial;
+}
+
+.material-checkbox > span::before {
+	content: "";
+	display: inline-block;
+	margin-right: 5px;
+	border: solid 2px rgba(0, 0, 0, 0.42);
+	border-radius: 2px;
+	width: 14px;
+	height: 14px;
+	vertical-align: -2px;
+	transition: border-color 0.5s, background-color 0.5s;
+}
+
+.material-checkbox > input:checked + span::before {
+	border-color: #2196F3;
+	background-color: #2196F3;
+}
+
+.material-checkbox > input:active + span::before {
+	border-color: #2196F3;
+}
+
+.material-checkbox > input:checked:active + span::before {
+	border-color: transparent;
+	background-color: rgba(0, 0, 0, 0.42);
+}
+
+.material-checkbox > input:disabled + span::before {
+	border-color: rgba(0, 0, 0, 0.26);
+}
+
+.material-checkbox > input:checked:disabled + span::before {
+	border-color: transparent;
+	background-color: rgba(0, 0, 0, 0.26);
+}
+
+.material-checkbox > span::after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 5px;
+	height: 10px;
+	border: solid 2px transparent;
+	border-left: none;
+	border-top: none;
+	transform: translate(5.5px, 1px) rotate(45deg);
+	-ms-transform: translate(5.5px, 2px) rotate(45deg);
+}
+
+.material-checkbox > input:checked + span::after {
+	border-color: #FFFFFF;
+}
+
+/* Style del bottone per l'inserimento di un elemento linea di associazione */
+.material-button {
+	display: inline-block;
+	vertical-align: middle;
+	width: 150px;
+	height: 50px;
+	padding: 15px 28px;
+	margin-left: 3%;
+	overflow: hidden;
+	cursor: pointer;
+	border-width: 0;
+	outline: none;
+	border-radius: 2px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+	background-color: #2ECC71;
+	color: #ECF0F1;
+	font-size: 20px;
+	transition: background-color .3s;
+}
+
+.material-button:hover {
+  background-color: #27AE60;
+}
+
+#addLineButton {
+	margin-left: 35px;
+	width: 200px;
+	padding: 15px 18px;
+}
+
+/* Style pulsanti/immagini */
+.saveButton, .codeButton, .homeButton, .showMenu, .hideMenu {
+    border: none;
+    outline: none;
+    background-color: transparent;
+	cursor: pointer;
+}
+
+.homeButton {
+    margin-left: calc(100vw - 470px);
+}
+
+.imgButton {
+	display: inline-block;
+	vertical-align: middle;
+    height: 50px;
+}
+
+.showMenu {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	z-index: 1;
+}
+
+.hideMenu {
+	display: none;
+	position: absolute;
+	top: 10px;
+	left: 285px;
+	z-index: 1;
+}
+
+.showMenu img:hover, .hideMenu img:hover {
+    opacity: 0.7;
+}
+
+/* Style pannello modifica elementi */
+#edit-tile {
+	position: absolute;
+	top: 0;
+	right: 0;
+    width: 195px;
+	height: 100%;
+	margin: auto;
+    border-left: 2px solid #173753;
+    background-color: white;
+	overflow: auto;
+}
+
+#edit-tile::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#edit-tile::-webkit-scrollbar {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#edit-tile::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #4b6e8c;
+}
+
+#add-new-attr {
+	display: flex;
+	justify-content: center;
+	margin-left: -19px;
+}
+
+#topButton, #centerButton {
+	display: flex;
+	justify-content: center;
+}
+
+#centerButton {
+	width: 193px;
+	margin-left: -10px;
+}
+
+#centerButton button {
+	width: 150px;
+	margin-top: 50px;
+}
+
+@-moz-document url-prefix() {
+    #edit-tile {
+        position: absolute;
+		top: 0;
+		right: 2px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#closeEditButton, #removeElementButton, #confirmButton, #addAttrBtn {
+	margin: 5px 5px 0 5px;
+	width: 80px;
+	padding: 15px 5px;
+}
+
+#confirmButton, #addAttrBtn {
+	margin-bottom: 5px;
+}
+
+.removeAttrBtn {
+	margin: 0 3px 0 0;
+}
+
+.foldAttrBtn {
+	margin: 0 3px -15px 0;
+}
+
+#attributes-editable {
+	margin: 30px 0 0 10px;
+	height: 30px;
+}
+
+#otherFields {
+	margin-top: -15px;
+}
+
+#otherFields .select {
+	margin-bottom: 5%;
+}
+
+#attributes {
+	margin: 60px 0 0 10px;
+	height: 30px;
+}
+
+.attributes-content {
+	display: none;
+}
+
+.attr-number {
+	margin: 0 auto 40px auto;
+}
+
+.attr-type {
+	margin-top: -15px;
+}
+
+.attr-name {
+	margin-top: -25px;
+}

@@ -1,0 +1,14 @@
+/*READ [ARRAYNAME]*/
+    private [ARRAYTYPE] read[ARRAYNAME](int id, Connection conn) throws SQLException {
+        String sql = "SELECT element FROM [ARRAYNAME]Array WHERE [INSTANCENAME]id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(sql)){
+            statement.setInt(1, id);
+            try(ResultSet resultSet = statement.executeQuery()){
+                [ARRAYTYPE] array = new ArrayList<>();
+                while (resultSet.next()) {
+                    array.add(resultSet.get[TIPO](1));
+                }
+                return array;
+            }
+        }
+    }

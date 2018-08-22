@@ -1,0 +1,16 @@
+DELIMITER $$
+
+CREATE TRIGGER setIdArray[NAME] BEFORE INSERT ON [NAME]Array
+FOR EACH ROW
+BEGIN
+IF NEW.db_id = 0 THEN
+    SET NEW.db_id = (
+       SELECT IFNULL(MAX(db_id), 0) + 1
+       FROM [NAME]Array
+       WHERE [PARENT]id = NEW.[PARENT]id
+    );
+END IF;
+END;
+$$
+DELIMITER ;
+ 

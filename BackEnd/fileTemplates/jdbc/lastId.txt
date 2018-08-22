@@ -1,0 +1,24 @@
+/*LAST DATABASE ID*/
+    public int lastDb_id() {
+        String sql = "SELECT db_id FROM [INSTANCENAME] ORDER BY db_id DESC LIMIT 1";
+        try(Connection conn = Database.getConnection();
+            Statement statement = conn.prepareStatement(sql);) {
+        	conn.setAutoCommit(false);
+            try(ResultSet rs = statement.executeQuery(sql)){
+                conn.commit();
+                int id;
+                if(!rs.next())
+                    id = 0;
+                else
+                    id = rs.getInt(1);
+
+                return id;
+            } catch(SQLException ex) {
+                conn.rollback();
+                throw ex;
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }

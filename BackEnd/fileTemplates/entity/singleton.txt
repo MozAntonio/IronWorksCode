@@ -1,0 +1,7 @@
+private static [CLASSNAME] INSTANCE;
+private [CLASSNAME](){}
+public static synchronized [CLASSNAME] getInstance() {
+	if(INSTANCE == null) 
+		INSTANCE = new [CLASSNAME]();
+	return INSTANCE;
+}

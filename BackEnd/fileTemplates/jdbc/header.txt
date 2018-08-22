@@ -1,0 +1,9 @@
+package jdbc.dao;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
+import jdbc.entities.[CLASSNAME];
+import jdbc.helpers.Database;
+
+public class [CLASSNAME]Dao {

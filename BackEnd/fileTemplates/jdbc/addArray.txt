@@ -1,0 +1,20 @@
+/*CREATE [ARRAYNAME]*/
+    private void sqlAdd[ARRAYNAME]([CLASSNAME] [INSTANCENAME], Connection conn) throws SQLException {
+        String sql = "INSERT INTO [ARRAYNAME]Array (db_id, [INSTANCENAME]id, element) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE element = ?";
+        try(PreparedStatement statement = conn.prepareStatement(sql)) {
+            int id = [INSTANCENAME].getDb_id();
+            int i = 1;
+            [ARRAYTYPE] array = [INSTANCENAME].get[ARRAYNAME]();
+            for([TIPO] x : array) {
+                statement.setInt(1, i++);
+                statement.setInt(2, id);
+                statement.set[TIPO](3, [ATTRIBUTE]);
+                statement.set[TIPO](4, [ATTRIBUTE]);
+                statement.addBatch();
+            }
+            statement.executeBatch();
+            if(table[ARRAYNAME]Length(id, conn) > array.size()) {
+                deleteFrom[ARRAYNAME](id, array.size(), conn);
+            }
+        }
+    }

@@ -1,0 +1,113 @@
+/*
+File: homepage.css
+Versione: 2.0
+Autore: Antonio Moz
+Registro Modifiche: Antonio Moz, creazione file, 2018-06-11
+Anna Poletti, stesura CSS, 2018-06-15
+Stefano Nordio, modifica % margin, 2018-06-19
+Stefano Nordio, versione ufficiale, 2018-06-21
+*/
+
+* {
+    margin: 0;
+	border: 0;
+    font-family: Roboto, "Open Sans", Arial, Helevetica, sans-serif;
+}
+
+body {
+	overflow-y: auto;
+	height: 95vh;
+}
+
+#container {
+	margin: 1%;
+}
+
+#title {
+    display: table;
+    width: 100%;
+    height: 13.5vh;
+    background-color: #173753;
+}
+
+h1 {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+    font-size: 64px;
+    line-height: 65px;
+	text-align: center;
+}
+
+#choice {
+	position: relative;
+    width: calc(100% -4px);
+    height: 73vh;
+	margin: auto;
+	border-left: 2px solid #173753;
+	border-right: 2px solid #173753;
+}
+
+#footer {
+    width: 100%;
+    height: 8.5vh;
+	min-height: 60px;
+    background-color: #173753;
+}
+
+.new {
+    color: #10548F;
+    font-size: 48px;
+    line-height: 58px;
+}
+
+.load {
+    color: #10548F;
+    font-size: 48px;
+    line-height: 58px;
+}
+
+.newButton {
+	position: absolute;
+	top: 30%;
+	left: 20%;
+	width: auto;
+	height: auto;
+}
+
+.loadButton {
+	position: absolute;
+	top: 30%;
+	right: 20%;
+	width: auto;
+	height: auto;
+}
+
+.newB {
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.inputDia {
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.imgButton {
+    width: 150px;
+    height: auto;
+    opacity: 0.3;
+	cursor: pointer;
+}
+
+input[type="file"].hiddenType {
+    display: none;
+}

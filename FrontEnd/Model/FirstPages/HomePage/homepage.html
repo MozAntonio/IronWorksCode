@@ -1,0 +1,71 @@
+<!--
+File: homepage.html
+Versione: 1.0
+Autore: Antonio Moz
+Registro Modifiche: 
+Antonio Moz, creazione file, 2018-06-11
+Anna Poletti, stesura html, 2018-06-11
+ANna Poletti, versione ufficiale, 2018-06-13
+-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>HomePage - IronWorks</title> <!-- from detail to general -->
+
+    <!-- meta -->
+    <meta name="description" content="Web application to create robustness diagrams and automatic generation of Java and SQL codes."/> <!-- max 150 char -->
+    <meta name="keywords" content="robustness diagrams,editor,java,sql,web application,homepage,swearoncode"/> <!-- max 10 -->
+    <meta name="author" content="SwearOnCode"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="index, follow"/>
+
+    <!-- font -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/favicon.ico"/>
+
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="./styles/homepage.css" media="all"/>
+    <!--<link rel="stylesheet" type="text/css" href="./styles/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="./styles/print.css" media="print"/>-->
+
+    <!-- script -->
+    <script type="text/javascript" src="../../../ExternalLibraries/scripts/jquery.js"></script>
+    <script type="text/javascript" src="../../../Controller/FirstPages/firstpages.js"></script>
+</head>
+
+<body>
+    <div id="container">
+        <!-- Titolo della pagina -->
+        <div id="title">
+            <h1>IronWorks</h1>
+        </div>
+        <div id="choice">
+            <div class="newButton">
+                <button class="newB" type="button" onclick="newProject()">
+					<img src="./images/file.svg" class="imgButton" title="Create new project"/>
+                </button><br/>
+                <span class="new">new project</span>
+            </div>
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="loadButton">
+                    <label for="inputDia" class="custom-file-upload">
+						<img src="./images/folder.svg" class="imgButton" title="Load existing project"/>
+					</label>
+                    <input class="hiddenType" id="inputDia" type="file" name="inputDia" oninput="loadProject()"/><br/>
+                    <span class="load">load project</span>
+                </div>
+            </form>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+</body>
+
+</html>

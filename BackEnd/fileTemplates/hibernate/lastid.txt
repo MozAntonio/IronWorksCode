@@ -1,0 +1,15 @@
+ public int lastDb_id() {
+        Transaction tx = null;
+        try(Session session = factory.openSession()) {
+            List results = session.createQuery("SELECT db_id FROM [CLASSNAME] ORDER BY db_id DESC").setMaxResults(1).list();
+            int id;
+            if(results.isEmpty())
+                id = 0;
+            else
+                id = (int)results.remove(0);
+            return id;
+        } catch(HibernateException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }

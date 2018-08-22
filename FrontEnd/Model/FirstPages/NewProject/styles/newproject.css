@@ -1,0 +1,98 @@
+/*
+File: newproject.css
+Versione: 1.0
+Autore: Anna Poletti
+Registro Modifiche: 
+Anna Poletti, creazione del file, 2018-06-11
+Stefano Nordio, stesura css, 2018-06-11
+Anna Poletti, versione ufficiale, 2018-06-12
+*/
+
+* {
+    margin: 0;
+	border: 0;
+    font-family: Roboto, "Open Sans", Arial, Helevetica, sans-serif;
+}
+
+body {
+	overflow-y: auto;
+	height: 95vh;
+}
+
+#container {
+	margin: 1%;
+}
+
+#title {
+    display: table;
+    width: 100%;
+    height: 13.5vh;
+    background-color: #173753;
+}
+
+h1 {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+    font-size: 64px;
+    line-height: 65px;
+	text-align: center;
+}
+
+#choice {
+	display: flex;
+	align-items: center;
+    width: calc(100% -4px);
+    height: 73vh;
+	margin: auto;
+	border-left: 2px solid #173753;
+	border-right: 2px solid #173753;
+}
+
+#footer {
+    width: 100%;
+    height: 8.5vh;
+	min-height: 60px;
+    background-color: #173753;
+}
+
+.name {
+	width: 30%;
+	padding: 0 3%;
+    font-size: 48px;
+    line-height: 58px;
+    color: #1B4079;
+}
+
+.insertName {
+	float: left;
+	width: 80%;
+	height: 15%;
+}
+
+#projectName {
+	width: 40%;
+	/*width: 30%;*/ /* FALLBACK per 4:3 */
+	padding: 0 3%;
+	border: none;
+    outline: none;
+    background-color: transparent;
+    text-decoration: none;
+    font-size: 48px;
+    color: #4D7C8A;
+	border-bottom: 2px solid #CCC;
+}
+
+.newB {
+	width: 20%;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.imgButton {
+    width: 124px;
+    height: 124px;
+}

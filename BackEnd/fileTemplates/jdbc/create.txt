@@ -1,0 +1,24 @@
+/*CREATE AND UPDATE*/
+    public [CLASSNAME] insert([CLASSNAME] [INSTANCENAME]) {
+        String sql = "INSERT INTO [CLASSNAME] (db_id[ATTRIBUTESLIST]) VALUES (?[PARAM]) ON DUPLICATE KEY UPDATE [FIELDS]";
+        if([INSTANCENAME].getDb_id() == 0)
+            [INSTANCENAME].setDb_id(lastDb_id() + 1);
+        try(Connection conn = Database.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);) {
+        	conn.setAutoCommit(false);
+        	statement.setInt(1, [INSTANCENAME].getDb_id());
+            [SETTINGS]
+            try{
+                statement.executeUpdate();
+                [SQLADDARRAY]
+                conn.commit();
+                return [INSTANCENAME];
+            } catch(SQLException ex) {
+                conn.rollback();
+                throw ex;
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }

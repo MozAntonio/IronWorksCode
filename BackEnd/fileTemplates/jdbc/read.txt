@@ -1,0 +1,52 @@
+/*READ*/
+    public [CLASSNAME] read(int id) {
+        String sql = "SELECT * FROM [INSTANCENAME] WHERE db_id = ?";
+        try(Connection conn = Database.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);) {
+        	conn.setAutoCommit(false);
+            statement.setInt(1, id);
+            [CLASSNAME] [INSTANCENAME] = new [CLASSNAME]();
+            [INSTANCENAME].setDb_id(id);
+            try(ResultSet result = statement.executeQuery()){
+                if(!result.next()) return null;
+                else{
+                	[SETTINGS]
+                }
+                [SQLSETARRAY]
+                conn.commit();
+                return [INSTANCENAME];
+            } catch (SQLException ex) {
+                conn.rollback();
+                throw ex;
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+/*READALL*/
+    public ArrayList<[CLASSNAME]> readAll() {
+    	String sql = "SELECT * FROM [INSTANCENAME]";
+        try(Connection conn = Database.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);) {
+        	conn.setAutoCommit(false);
+            ArrayList<[CLASSNAME]> [INSTANCENAME]List = new ArrayList<>();
+            try(ResultSet result = statement.executeQuery()){
+                while(result.next()){
+                	[CLASSNAME] [INSTANCENAME] = new [CLASSNAME]();
+                	[INSTANCENAME].setDb_id(result.getInt(1));
+                	[SETTINGS]
+                	[SQLSETARRAY]
+                	[INSTANCENAME]List.add([INSTANCENAME]);
+                }
+                conn.commit();
+                return [INSTANCENAME]List;
+            } catch (SQLException ex) {
+                conn.rollback();
+                throw ex;
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }

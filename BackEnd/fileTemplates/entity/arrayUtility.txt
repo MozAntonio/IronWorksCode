@@ -1,0 +1,4 @@
+	public [TYPE] popFrom[NAME]() { return [NAME].remove([NAME].size()-1); }
+	public [TYPE] removeFrom[NAME](int index) throws IndexOutOfBoundsException { return [NAME].remove(index); }
+	public boolean pushTo[NAME]([TYPE] x) { return [NAME].add(x); }
+	public [TYPE] edit[NAME]Element(int i, [TYPE] x) { return [NAME].set(i, x); }

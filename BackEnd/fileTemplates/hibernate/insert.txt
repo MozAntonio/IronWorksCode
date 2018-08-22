@@ -1,0 +1,14 @@
+public [CLASSNAME] insert([CLASSNAME] [INSTANCENAME]) {
+        if ([INSTANCENAME].getDb_id() == 0)
+            [INSTANCENAME].setDb_id(lastDb_id() + 1);
+        Transaction tx = null;
+        try (Session session = factory.openSession()) {
+            tx = session.beginTransaction();
+            session.saveOrUpdate([INSTANCENAME]);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        }
+        return [INSTANCENAME];
+    }

@@ -1,0 +1,7 @@
+CREATE TABLE [NAME]Array (
+	db_id int DEFAULT 0,
+	[PARENT]id int,
+	element [TYPE],
+	PRIMARY KEY(db_id, [PARENT]id),
+	FOREIGN KEY([PARENT]id) REFERENCES [PARENT](db_id)
+);

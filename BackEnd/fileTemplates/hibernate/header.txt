@@ -1,0 +1,22 @@
+package hibernate.dao;
+
+import hibernate.entities.[CLASSNAME];
+import org.hibernate.*;
+import org.hibernate.cfg.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+
+
+public class [CLASSNAME]Dao {
+    private static SessionFactory factory;
+
+    static {
+        try {
+            factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass([CLASSNAME].class).buildSessionFactory();
+        } catch (Throwable ex) {
+            //ex.printStackTrace();
+            System.out.println("Failed to create sessionFactory object");
+        }
+    }

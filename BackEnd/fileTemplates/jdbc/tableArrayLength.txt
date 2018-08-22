@@ -1,0 +1,13 @@
+/*[ARRAYNAME] LENGTH*/
+    private int table[ARRAYNAME]Length(int id, Connection conn) throws SQLException {
+        String sql = "SELECT COUNT(db_id) FROM [ARRAYNAME]Array WHERE [INSTANCENAME]id = ?";
+        try(PreparedStatement statement = conn.prepareStatement(sql)){
+            statement.setInt(1, id);
+            try(ResultSet resultSet = statement.executeQuery()){
+                if(resultSet.next())
+                    return resultSet.getInt(1);
+                else
+                    return -1;
+            }
+        }
+    }

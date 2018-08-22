@@ -1,0 +1,187 @@
+<!--
+File: editor.html
+Versione: 3.0
+Autore: Antonio Moz
+Registro Modifiche:
+Anna Poletti, creazione file, 2018-06-10
+Stefano Nordio, stesura scheletro html, 2018-06-15
+Antonio Moz, inserimento elementi nell'editor , 2018-06-16
+Antonio Moz, versione ufficiale, 2018-06-18
+-->
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>Editor - IronWorks</title> <!-- from detail to general -->
+
+    <!-- meta -->
+    <meta name="description" content="Web application to create robustness diagrams and automatic generation of Java and SQL codes."/> <!-- max 150 char -->
+    <meta name="keywords" content="robustness diagrams,editor,java,sql,web application,ironworks,swearoncode"/> <!-- max 10 -->
+    <meta name="author" content="SwearOnCode"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="index, follow"/>
+
+    <!-- font -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../FirstPages/HomePage/images/favicon.ico"/>
+
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="../../ExternalLibraries/styles/joint.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="../../ExternalLibraries/styles/spectrum.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="./styles/editor.css" media="all"/>
+    <!--<link rel="stylesheet" type="text/css" href="./styles/mobile.css" media="handheld, screen and (max-width:768px), only screen and (max-device-width:768px)"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="./styles/print.css" media="print"/>-->
+
+    <!-- script -->
+    <script type="text/javascript" src="../../ExternalLibraries/scripts/jquery.js"></script>
+    <script type="text/javascript" src="../../ExternalLibraries/scripts/lodash.js"></script>
+    <script type="text/javascript" src="../../ExternalLibraries/scripts/backbone.js"></script>
+    <script type="text/javascript" src="../../ExternalLibraries/scripts/joint.js"></script>
+	<script type="text/javascript" src="../../ExternalLibraries/scripts/spectrum.js"></script>
+</head>
+
+<body>
+    <div id="container">
+		<!-- Titolo della pagina -->
+		<div id="title">
+			<h1>IronWorks</h1>
+		</div>
+
+		<div id="diagrams">
+			<!-- Pulsante per mostrare il menù degli elementi -->
+			<button class="showMenu" title="Show elements menu">
+				<img src="./images/arrowRight.svg" class="imgButton"/>
+			</button>
+			<!-- Pulsante per nascondere il menù degli elementi -->
+			<button class="hideMenu" title="Hidden elements menu">
+				<img src="./images/arrowLeft.svg" class="imgButton"/>
+			</button>
+            <!-- Proprietà modificabili per gli elementi del menu -->
+			<div id="menu">
+                <!-- Graph contenente gli elementi spostabili nell'editor -->
+				<div id="elements"></div>
+                <!-- div con tutte la info degli elementi-->
+                <div id="info" class="hidden">
+					<!-- Attore: Campi per inserire il nome, scegliere l'eventuale colore, e aggiungere l'elemento al diagramma -->
+					<div class="divElement">
+						<div class="attrsElement">
+							<div class="group">
+								<input id="actorName" type="text" name="actorName" size="8" required="required"/>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label for="actorName">Name</label>
+							</div>
+							<div class="group">
+								<input id="actorColor" type="text" class="colorPicker"/>
+							</div>
+						</div>
+					</div>
+
+					<!-- Boundary: Campi per inserire il nome, scegliere l'eventuale colore, e aggiungere l'elemento al diagramma -->
+					<div class="divElement">
+						<div class="attrsElement">
+							<div class="group">
+								<input id="boundaryName" type="text" name="boundaryName" size="8" required="required"/>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label for="boundaryName">Name</label>
+							</div>
+							<div class="group">
+								<input id="boundaryColor" type="text" class="colorPicker"/>
+							</div>
+						</div>
+					</div>
+
+					<!-- Control: Campi per inserire il nome, scegliere l'eventuale colore, e aggiungere l'elemento al diagramma -->
+					<div class="divElement">
+						<div class="attrsElement">
+							<div class="group">
+								<input id="controlName" type="text" name="controlName" size="8" required="required"/>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label for="controlName">Name</label>
+							</div>
+							<div class="group">
+								<input id="controlColor" type="text" class="colorPicker"/>
+							</div>
+						</div>
+					</div>
+
+					<!-- Entità: Campi per inserire il nome, scegliere l'eventuale colore, e aggiungere l'elemento al diagramma -->
+					<div class="divElement">
+						<div class="attrsElement">
+							<div class="group">
+								<input id="entityName" type="text" name="entityName" size="8" required="required"/>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label for="entityName">Name</label>
+							</div>
+							<div id="menuSelect" class="select">
+								<select class="select-text" id="access" required="required">
+									<option value="" disabled="disabled" selected="selected"></option>
+									<option value="public">public</option>
+									<option value="protected">protected</option>
+									<option value="default">default</option>
+									<option value="private">private</option>
+								</select>
+								<span class="select-highlight"></span>
+								<span class="select-bar"></span>
+								<label for="access" class="select-label">Access</label>
+							</div>
+							<div class="group">
+								<input id="entityColor" type="text" class="colorPicker"/>
+							</div>
+							<label id="menu-checkbox" for="is-singleton" class="material-checkbox">
+								<input id="is-singleton" name="is-singleton" type="checkbox" value="false"/>
+								<span>Singleton</span>
+							</label>							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Contenitore del foglio per il diagramma corrente -->
+			<div id="editor"></div>
+			
+			<!-- Contenitore a comparsa per editare gli elementi -->
+			<div id="edit-tile" class="hidden">
+				<div id="topButton">
+					<button class="material-button" id="closeEditButton" title="Close edit menu">Close</button>
+					<button class="material-button" id="removeElementButton" title="Delete element">Delete</button>
+				</div>
+				<div id="attributes-editable"></div>
+			</div>
+		</div>
+
+		<!-- Footer con pulsanti disponibili nell'editor -->
+		<div id="footer">		
+			<!-- Linea di associazione: Aggiungere l'elemento al diagramma -->
+			<button class="material-button" type="button" id="addLineButton"
+				title="Add an Association Line into diagram to connect two elements">Association Line
+			</button>
+
+			<!-- Ritorno all'HomePage -->
+			<button class="homeButton" title="Go back to homepage">
+				<img src="./images/home.svg" class="imgButton"/>
+			</button>
+
+			<!-- Salvataggio in un file JSON del diagramma corrente -->
+			<button class="saveButton" title="Save JSON file of current diagram">
+				<img src="./images/save.svg" class="imgButton"/>
+			</button>
+
+			<!-- Esportazione in un archivio ZIP del codice generato a partire dal diagramma corrente -->
+			<button class="codeButton" title="Export zip containing Java and SQL code of persistent entity">
+				<img src="./images/code.svg" class="imgButton"/>
+			</button>
+		</div>
+
+    </div>
+    <script type="module" src="../../Controller/Editor/editor.js"></script>
+</body>
+</html>

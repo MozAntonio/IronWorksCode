@@ -1,0 +1,19 @@
+/*DELETE*/
+    public void delete([CLASSNAME] [INSTANCENAME]) {
+        String sql = "DELETE FROM [CLASSNAME] WHERE db_id = ?";
+        try(Connection conn = Database.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);) {
+        	conn.setAutoCommit(false);
+            statement.setInt(1,[INSTANCENAME].getDb_id());
+            try{
+                [SQLDELETEARRAY]
+                statement.executeUpdate();
+                conn.commit();
+            } catch (SQLException ex) {
+                conn.rollback();
+                throw ex;
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+    	}
+    }
