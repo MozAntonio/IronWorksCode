@@ -1,7 +1,7 @@
 # IronWorks - Guida all'installazione e all'avvio
 ## Prerequisiti
 ### Installazione di *Node.js*
-L'applicazione necessita del runtime JavaScript **Node.js** e il package manager **npm** installati nel proprio sistema.  
+L'applicazione necessita del runtime JavaScript **Node.js** e del package manager **npm** installati nel proprio sistema.  
 La versione minima d'installazione è *8.11.1 LTS*.  
 La versione per il proprio sistema operativo è scaricabile all'indirizzo https://nodejs.org/it/download.
 
